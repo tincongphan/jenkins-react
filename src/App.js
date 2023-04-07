@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <p>update jenkins</p>
+      <p>update jenkins v1.0</p>
     </div>
   );
 }
