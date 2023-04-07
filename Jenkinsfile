@@ -1,11 +1,20 @@
 pipeline {
   agent any
   stages {
-    stage("Clone"){
+    stage("Test") {
+      agent {
+          docker {
+            image 'python:3.8-slim-buster'
+            args '-u 0:0 -v /tmp:/root/.cache'
+          }
+      }
       steps {
-        git branch: 'main', url: 'https://github.com/tincongphan/jenkins-react.git'
-        // git 'https://github.com/tincongphan/jenkins-react.git'
+        sh "pip install poetry"
+        sh "poetry install"
+        sh "poetry run pytest"
       }
     }
   }
 }
+
+
